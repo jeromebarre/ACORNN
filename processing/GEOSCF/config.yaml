@@ -1,0 +1,29 @@
+# Date/time range (inclusive)
+start: 2024-01-01T00:00
+end:   2024-02-01T00:00
+
+# Input/output directories
+indir: /discover/nobackup/projects/gmao/geos_cf/pub/v1/ana
+out:   /discover/nobackup/projects/jcsda/s2127/barre/GEOS_CF_US/output
+
+# File‑name patterns
+met_pattern:  GEOS-CF.v01.rpl.met_inst_1hr_g1440x721_v72.{date}_{hour}00z.nc4
+chm_pattern:  GEOS-CF.v01.rpl.chm_inst_1hr_g1440x721_v72.{date}_{hour}00z.nc4
+ems_pattern:  GEOS-CF.v01.rpl.ems_tavg_1hr_g1440x721_x1.{date}_{hour}z.nc4
+tavg_pattern: GEOS-CF.v01.rpl.met_tavg_1hr_g1440x721_x1.{date}_{hour}z.nc4
+
+# Time‑offsets for non‑instantaneous files
+ems_offset_min:   30
+ems_hour_fmt:    "%H%M"
+tavg_offset_min: 30
+tavg_hour_fmt:   "%H%M"
+
+# Variables to extract from each file type
+met_vars:  ['DELP', 'PS', 'ZL', 'Q', 'QCTOT', 'T', 'U', 'V']
+chm_vars:  ['CO', 'HCHO', 'NO', 'NO2', 'O3', 'SO2']
+ems_vars:  ['EMIS_SO2', 'EMIS_NO', 'EMIS_HCHO', 'EMIS_CO']
+tavg_vars: ['CLDTT']
+
+# Spatial subset by array index (inclusive)
+lat_index: [451, 578]
+lon_index: [181, 468]
