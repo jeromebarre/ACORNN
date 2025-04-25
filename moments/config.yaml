@@ -1,0 +1,30 @@
+dataset:
+  path_pattern: "/discover/nobackup/projects/jcsda/s2127/barre/GEOS_CF_US/output/GEOS_CF_%Y%m%d_%H00z.nc4"
+  start_date: "2024-01-01 00:00"
+  end_date: "2024-01-31 00:00"
+  time_step_hours: 1
+
+features:
+  log_transform_features:
+    - 'CO'
+    - 'HCHO'
+    - 'NO'
+    - 'NO2'
+    - 'O3'
+    - 'SO2'
+    - 'EMIS_CO'
+    - 'EMIS_HCHO'
+    - 'EMIS_NO'
+    - 'EMIS_SO2'
+
+  tendency_variables:
+    - 'CO_tend'
+    - 'HCHO_tend'
+    - 'NO_tend'
+    - 'NO2_tend'
+    - 'O3_tend'
+    - 'SO2_tend'
+
+output:
+  save_path: "normalization_params_all.json"
+
