@@ -1,0 +1,6 @@
+dataset:
+  sample_file: "/discover/nobackup/projects/jcsda/s2127/barre/GEOS_CF_US/output/GEOS_CF_20240101_0000z.nc4"
+
+spatial_features:
+  radius: 1
+  save_path: "/gpfsm/dnb34/jbarre/jedidev/ACORNN/geometry/spatial_features_GEOS_CF_US.nc"
