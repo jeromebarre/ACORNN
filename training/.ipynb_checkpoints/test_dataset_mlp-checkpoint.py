@@ -1,9 +1,7 @@
-# File: test_mlp_dataset.py
-
 import os
 from dataset_mlp import MLPDataset
 
-# Replace with actual file paths
+# File pairs: GEOS-CF t and t+1
 file_pairs = [
     (
         "/discover/nobackup/projects/jcsda/s2127/barre/GEOS_CF_US/output/GEOS_CF_20240101_0000z.nc4",
@@ -11,18 +9,25 @@ file_pairs = [
     )
 ]
 
+# Normalization and spatial feature paths
 norm_path = "/discover/nobackup/jbarre/jedidev/ACORNN/moments/normalization_params_all.json"
+spatial_feature_path = "/discover/nobackup/jbarre/jedidev/ACORNN/geometry/spatial_features_GEOS_CF_US.nc"
 
-# Instantiate the dataset
-dataset = MLPDataset(file_pairs, norm_path, radius=1, sample_ratio=0.001)
-
+# Instantiate the dataset with spatial features
+dataset = MLPDataset(
+    file_pairs=file_pairs,
+    norm_path=norm_path,
+    spatial_feature_path=spatial_feature_path,
+    radius=1,
+    sample_ratio=0.001
+)
 
 print(f"Total samples: {len(dataset)}")
 x, y = dataset[0]
 print("Input shape:", x.shape)
 print("Output shape (tendencies):", y.shape)
 
-# Print input values in chunks of 9 (like 3x3 patches/slices)
+# Print input values in chunks of 9 (to visualize 3×3 structure)
 print("Input values grouped by 9:")
 for i in range(0, len(x), 9):
     chunk = x[i:i+9].numpy()
@@ -30,7 +35,7 @@ for i in range(0, len(x), 9):
 
 print("Output values (tendencies):", y.numpy())
 
-# Now test resampling
+# Test resampling
 print("\nResampling dataset...")
 dataset.resample()
 
@@ -39,7 +44,6 @@ x, y = dataset[0]
 print("Input shape after resample:", x.shape)
 print("Output shape after resample:", y.shape)
 
-# Print input values in chunks of 9 again after resample
 print("Input values grouped by 9 (after resample):")
 for i in range(0, len(x), 9):
     chunk = x[i:i+9].numpy()

@@ -26,7 +26,7 @@ def main(config):
 
     n_lat, n_lon = lat2d.shape
     n_neighbors = (2 * radius + 1)**2 - 1  # exclude center cell
-    features = np.full((n_neighbors, 2, n_lat, n_lon), np.nan, dtype=np.float32)
+    features = np.full((n_neighbors, 3, n_lat, n_lon), np.nan, dtype=np.float32)
 
     # --- Neighbor offsets (excluding center) ---
     offsets = []
@@ -50,7 +50,8 @@ def main(config):
 
                 # Normalize angular distance by 1°
                 features[idx, 0, i, j] = dist / DEGREE_RAD
-                features[idx, 1, i, j] = azim
+                features[idx, 1, i, j] = np.sin(azim)
+                features[idx, 2, i, j] = np.cos(azim)
 
     # --- Save to NetCDF ---
     out_ds = xr.Dataset(
@@ -59,7 +60,7 @@ def main(config):
         },
         coords={
             "neighbor": np.arange(n_neighbors),
-            "feature": ["angular_distance", "azimuth_angle"],
+            "feature": ["angular_distance", "sin_azimuth", "cos_azimuth"],
             "lat": lat,
             "lon": lon
         }
