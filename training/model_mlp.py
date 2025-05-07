@@ -9,16 +9,19 @@ class MLP(nn.Module):
 
         hidden_dim1 = hidden_dim_factor * input_dim
         hidden_dim2 = hidden_dim1 // 2
-        hidden_dim3 = hidden_dim2 // 2
+        hidden_dim3 = hidden_dim2 // 3
+        hidden_dim4 = hidden_dim3 // 4
 
         self.net = nn.Sequential(
             nn.Linear(input_dim, hidden_dim1),
             nn.ReLU(),
             nn.Linear(hidden_dim1, hidden_dim2),
-            nn.ReLU(),
+            nn.ReLU(),           
             nn.Linear(hidden_dim2, hidden_dim3),
             nn.ReLU(),
-            nn.Linear(hidden_dim3, output_dim)
+            nn.Linear(hidden_dim3, hidden_dim4),
+            nn.ReLU(),
+            nn.Linear(hidden_dim4, output_dim)
         )
 
     def forward(self, x):

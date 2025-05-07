@@ -1,5 +1,5 @@
 import os
-from dataset_mlp import MLPDataset
+from training.dataset_mlp import MLPDataset
 
 # File pairs: GEOS-CF t and t+1
 file_pairs = [

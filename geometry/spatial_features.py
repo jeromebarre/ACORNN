@@ -4,7 +4,7 @@ import yaml
 import numpy as np
 import xarray as xr
 import argparse
-from geom_functions import SpatialGeometry
+from geometry.geom_functions import SpatialGeometry
 
 def parse_config(path):
     with open(path, "r") as f:
